@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const API_KEY = '7c94c4bf82af4e18a0ba534482945782';
+  const API_KEY = 'a97f89c951764c88add55ecfde3159b0';
 
   const [news, fetchNews] = useState([]);
   const getNews=()=>{
@@ -17,12 +17,7 @@ function App() {
      fetchNews(...news,res.data.articles);
    })
  }
- const searchByCategory=(category)=>{
-  axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${API_KEY}`).then((res)=>{
-    console.log(res.data.articles);
-    fetchNews(...news,res.data.articles);
-  })
- } 
+  
  useEffect(()=>{
       const getAllNews = async () =>{
         const allNews = await getNews();
@@ -30,17 +25,10 @@ function App() {
       } 
       getAllNews();
   },[])
-  useEffect(()=>{
-    const getCategoryNews =() =>{
-      const allNews =  searchByCategory();
-      if(allNews) fetchNews(allNews);
-    } 
-  },[])
-
   return (
     <div>
       <Router>
-        <Header searchByCategory={searchByCategory}></Header>
+        <Header fetchNews={fetchNews} news={news} API_KEY={API_KEY}></Header>
         <Routes>
           <Route path="/news" exact element={<News news={news} getNews={getNews}/>}></Route>
         </Routes>
