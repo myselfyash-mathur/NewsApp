@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const API_KEY = 'a97f89c951764c88add55ecfde3159b0';
+  const API_KEY = '832fbdf8bfa44110b37cf33096bb2ddc';
 
   const [news, fetchNews] = useState([]);
   const getNews=()=>{
